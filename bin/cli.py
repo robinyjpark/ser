@@ -57,11 +57,14 @@ def train(
 
     # train
     model_train(
-        epochs, training_dataloader, validation_dataloader, device, model, optimizer
+        epochs,
+        training_dataloader,
+        validation_dataloader,
+        device,
+        model,
+        optimizer,
+        output_path,
     )
-
-    # save the trained model
-    torch.save(model.state_dict(), f"{output_path}/model.pt")
 
 
 @main.command()
