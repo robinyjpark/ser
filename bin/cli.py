@@ -33,8 +33,8 @@ def train(
     # save the parameters!
     today = datetime.now()
     today_date = today.strftime("%b-%d-%Y")
-    today_time = today.strftime("%H:%M:%S")
-    output_path = f"runs/{today_date}"
+    today_time = today.strftime("%H-%M")
+    output_path = f"runs/{name}/{today_date}/{today_time}"
     if not os.path.exists(output_path):
         os.makedirs(output_path)
 
@@ -44,7 +44,7 @@ def train(
         'learning_rate': learning_rate
     }
 
-    param_path = f"{output_path}/parameters-{name}-{today_time}.json"
+    param_path = f"{output_path}/params.json"
     with open(param_path, "w") as outfile:
         json.dump(param_dict, outfile)    
 
@@ -62,7 +62,7 @@ def train(
                 device, model, optimizer)
 
     # save the trained model
-    torch.save(model.state_dict(), f'{output_path}/{name}-{today_time}')
+    torch.save(model.state_dict(), f'{output_path}/model.pt')
 
 @main.command()
 def infer():
