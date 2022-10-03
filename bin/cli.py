@@ -4,6 +4,7 @@ from pathlib import Path
 import typer
 import torch
 import git
+import json
 
 from ser.train import train as run_train
 from ser.infer import load_model, infer as run_infer
@@ -69,6 +70,12 @@ def infer(
     dataloader = test_dataloader(1, transforms(normalize))
 
     # TODO load the parameters from the run_path so we can print them out!
+    with open (run_path / "params.json", 'r') as f:
+       params = json.load(f) 
+    model_name = params['name']
+
+    print(f"This experiment is called {model_name}.")
+    print(f"Parameters used: {params}")
 
     # load the model
     images, model = load_model(run_path, label, dataloader)
