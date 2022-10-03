@@ -33,7 +33,7 @@ class Net(nn.Module):
 
 
 def model_setup(device, learning_rate):
-    
+
     # load model
     model = Net().to(device)
 
@@ -41,4 +41,3 @@ def model_setup(device, learning_rate):
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     return model, optimizer
-
