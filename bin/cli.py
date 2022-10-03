@@ -59,8 +59,11 @@ def train(
 
 
 @main.command()
-def infer():
-    run_path = Path("./path/to/one/of/your/training/runs")
+def infer(
+    run_path: Path = typer.Option(
+        ..., "-m", "--model", help="Path to the model folder to use for inference."
+    ),
+):
     label = 6
 
     # TODO load the parameters from the run_path so we can print them out!
